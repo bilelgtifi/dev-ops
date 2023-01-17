@@ -2,7 +2,7 @@ FROM node:alpine
  
 WORKDIR /app
 # install app dependencies
-COPY frontend/package.json .
+COPY /frontend/package.json .
  
 RUN npm install
  
