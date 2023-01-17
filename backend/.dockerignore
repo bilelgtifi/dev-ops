@@ -1,3 +1,2 @@
-conf/
-libraries/
-plugins/
+*/build/*
+*/*/build*
