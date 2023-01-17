@@ -1,10 +1,20 @@
-FROM node:17-alpine
+# pull official base image
+FROM node:13.12.0-alpine
+
+# set working directory
 WORKDIR /app
-COPY /frontend/package.json .
-RUN npm uninstall npm
-RUN npm install npm@latest
-COPY . .
-EXPOSE 3000
-CMD ["nmp", "start"]
 
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
+
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "start"]
